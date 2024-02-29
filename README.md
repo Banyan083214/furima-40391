@@ -31,28 +31,25 @@
 | street_address     | string   | null: false |
 | building           | string   |             |
 | telephone_number   | string   | null: false |
-| user               | references | null: false, foreign_key: true |
-
+| order              | references   | null: false, foreign_key: true |
 
 ### Association
 
-- has_one :order
+- belongs_to :order
 
 
 ## items テーブル
 
-| Column     | Type      |Options       |
-| ------     | ------------------------------- |
-| item_name    | string      | null: false |
-| category_id    | string       | null: false |
-| area_id    | string       | null: false |
-| condition    | string       | null: false |
-| price    | integer     | null: false |
-| load    | string       | null: false |
-| deadline    | text      | null: false |
-| user       | references | null: false, foreign_key: true |
-
-| ---------- | ------ | ----------- |
+| Column        | Type         |Options       |
+| ------        | ------------------------------- |
+| item_name     | string       | null: false |
+| category_id   | integer       | null: false |
+| area_id       | integer      | null: false |
+| condition     | string       | null: false |
+| price         | integer      | null: false |
+| load          | string       | null: false |
+| deadline      | text         | null: false |
+| user          | references   | null: false, foreign_key: true |
 
 
 
@@ -68,11 +65,10 @@
 | ------ | ------------------------------- |
 | item               | references | null: false, foreign_key: true |
 | user               | references | null: false, foreign_key: true |
-| ------------------ | ------ | ----------- |
+
 
 ### Association
 
 - belongs_to :user
 - belongs_to :item
-
-- belongs_to :shippingaddresses
+- has_one :shippingaddresses
