@@ -19,7 +19,6 @@
 ### Association
 
 - has_many :orders
-- has_many :shipping_addresses
 - has_many :items
 
 ##  shippingaddresses
@@ -27,17 +26,16 @@
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
 | postal_code        | string   | null: false |
-| area            | references| null: false, foreign_key: true     |
-| city               | text   | null: false |
-| street_address     | text   | null: false |
-| building           | text   |             |
+| area_id            | integer   | null: false    |
+| city               | string   | null: false |
+| street_address     | string   | null: false |
+| building           | string   |             |
 | telephone_number   | string   | null: false |
 | user               | references | null: false, foreign_key: true |
 
 
 ### Association
 
-- belongs_to :user
 - has_one :order
 
 
@@ -46,15 +44,13 @@
 | Column     | Type      |Options       |
 | ------     | ------------------------------- |
 | item_name    | string      | null: false |
-| category    | string       | null: false |
+| category_id    | string       | null: false |
+| area_id    | string       | null: false |
 | condition    | string       | null: false |
 | price    | integer     | null: false |
 | load    | string       | null: false |
 | deadline    | text      | null: false |
-| image      | references| null: false, foreign_key: true |
-| order      | references| null: false, foreign_key: true |
 | user       | references | null: false, foreign_key: true |
-| area    | references| null: false, foreign_key: true     |
 
 | ---------- | ------ | ----------- |
 
@@ -79,4 +75,4 @@
 - belongs_to :user
 - belongs_to :item
 
-
+- belongs_to :shippingaddresses
