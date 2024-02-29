@@ -4,28 +4,34 @@
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| name               | string | null: false |
+| nickname               | string | null: false |
 | email              | string | null: false, unique: true |
-| password | string | null: false |
+| encrypted_password | string | null: false |
 | birthday | date | null: false |
+| first_name_kanji | string | null: false |
+| last_name_kanji | string | null: false |
+| first_name_katakana | string | null: false |
+| first_name_katakana | string | null: false |
+
+
+
 
 ### Association
 
 - has_many :orders
 - has_many :shipping_addresses
 - has_many :items
-- has_many :payment
 
 ##  shippingaddresses
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| postal_code        | text   | null: false |
-| prefectures        | text   | null: false |
-| municipalities     | text   | null: false |
-| street address     | text   | null: false |
+| postal_code        | string   | null: false |
+| area            | references| null: false, foreign_key: true     |
+| city               | text   | null: false |
+| street_address     | text   | null: false |
 | building           | text   |             |
-| telephone number   | text   | null: false |
+| telephone_number   | string   | null: false |
 | user               | references | null: false, foreign_key: true |
 
 
@@ -39,10 +45,21 @@
 
 | Column     | Type      |Options       |
 | ------     | ------------------------------- |
-| content    | text      | null: false |
+| item_name    | string      | null: false |
+| category    | string       | null: false |
+| condition    | string       | null: false |
+| price    | integer     | null: false |
+| load    | string       | null: false |
+| deadline    | text      | null: false |
+| image      | references| null: false, foreign_key: true |
 | order      | references| null: false, foreign_key: true |
 | user       | references | null: false, foreign_key: true |
+| area    | references| null: false, foreign_key: true     |
+
 | ---------- | ------ | ----------- |
+
+
+
 ### Association
 
 - belongs_to :user
@@ -53,7 +70,6 @@
 
 | Column     | Type      |Options       |
 | ------ | ------------------------------- |
-| shipping_addresses  | references | null: false, foreign_key: true |
 | item               | references | null: false, foreign_key: true |
 | user               | references | null: false, foreign_key: true |
 | ------------------ | ------ | ----------- |
@@ -62,20 +78,5 @@
 
 - belongs_to :user
 - belongs_to :item
-- belongs_to :shipping_address
-- has_one :payment
 
 
-## payment テーブル
-
-| Column     | Type      |Options       |
-| ------ | ------------------------------- |
-| card_number   | text | null: false |
-| order         | references | null: false, foreign_key: true |
-| user          | references | null: false, foreign_key: true |
-| ------------------ | ------ | ----------- |
-
-### Association
-
-- belongs_to :user
-- belongs_to :order
