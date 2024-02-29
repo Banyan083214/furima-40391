@@ -21,7 +21,7 @@
 - has_many :orders
 - has_many :items
 
-##  shippingaddresses
+##  shipping_addresses
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
@@ -45,10 +45,11 @@
 | item_name     | string       | null: false |
 | category_id   | integer       | null: false |
 | area_id       | integer      | null: false |
-| condition     | string       | null: false |
+| condition_id  | integer       | null: false |
 | price         | integer      | null: false |
-| load          | string       | null: false |
-| deadline      | text         | null: false |
+| load_id       | integer       | null: false |
+| deadline_id   | integer         | null: false |
+| explanation   | text        | null: false |
 | user          | references   | null: false, foreign_key: true |
 
 
@@ -71,4 +72,4 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shippingaddresses
+- has_one :shipping_addresses
