@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-
-  unauthenticated do
-    root to: 'items#index', as: :unauthenticated_root
-  end
+  root to: 'items#index'
 
   resources :items
 end
