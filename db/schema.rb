@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_29_123023) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_01_090224) do
+  create_table "items", charset: "utf8", force: :cascade do |t|
+    t.string "item_name", null: false
+    t.integer "category_id", null: false
+    t.integer "area_id", null: false
+    t.integer "condition_id", null: false
+    t.integer "price", null: false
+    t.integer "load_id", null: false
+    t.integer "deadline_id", null: false
+    t.text "explanation", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
