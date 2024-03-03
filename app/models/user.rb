@@ -11,6 +11,4 @@ class User < ApplicationRecord
   validates :first_name_katakana, presence: true 
   validates :last_name_katakana, presence: true 
 
-  has_many :orders, dependent: :destroy 
-  has_many :items, dependent: :destroy 
 end
