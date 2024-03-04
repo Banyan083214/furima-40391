@@ -64,6 +64,32 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Email is invalid')
       end
+
+      it '姓が全角文字でなければならない' do
+        @user.first_name_kanji = 'taro'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kanji is invalid")
+      end
+
+      it '名が全角文字でなければならない' do
+        @user.last_name_kanji = 'taro'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kanji is invalid")
+      end
+
+      it '姓のカナが全角文字でなければならない' do
+        @user.first_name_katakana = 'taro'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name katakana is invalid")
+      end
+
+      it '名のカナが全角文字でなければならない' do
+        @user.last_name_katakana = 'taro'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name katakana is invalid")
+      end
+
+
     end
   end
 end
