@@ -12,6 +12,7 @@ class Item < ApplicationRecord
   validates :load_id, presence: true
   validates :deadline_id, presence: true
   validates :explanation, presence: true
+  validates :image, presence: true
 
 
 end
