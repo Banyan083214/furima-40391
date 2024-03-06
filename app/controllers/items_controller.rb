@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+  
   def index
-    @item = Item.new
+    @items = Item.order("created_at DESC")
   end
 
   def new
@@ -9,7 +11,12 @@ class ItemsController < ApplicationController
 
 
   def create
-    @item.save
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   
@@ -25,7 +32,7 @@ class ItemsController < ApplicationController
     :load_id,
     :deadline_id,
     :explanation, 
-    :image
+    :image,
     ).merge(user_id: current_user.id)
   end
 end
