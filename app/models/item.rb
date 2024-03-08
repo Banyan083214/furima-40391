@@ -13,7 +13,7 @@ class Item < ApplicationRecord
   validates :category_id, presence: true
   validates :area_id, presence: true
   validates :condition_id, presence: true
-  validates :price, presence: true,format: { with: /\A\d+\z/, message: 'は半角数字のみ入力してください' },numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  validates :price, presence: true,numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   validates :load_id, presence: true
   validates :deadline_id, presence: true
   validates :explanation, presence: true

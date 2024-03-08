@@ -91,28 +91,34 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
-      it 'はarea_idが1だと無効であること' do
+      it 'area_idが1だと無効であること' do
         @item.area_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Area can't be blank")
       end
 
-      it 'はcondition_idが1だと無効であること' do
+      it 'condition_idが1だと無効であること' do
         @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
 
-      it 'はload_idが1だと無効であること' do
+      it 'load_idが1だと無効であること' do
         @item.load_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Load can't be blank")
       end
 
-      it 'はdeadline_idが1だと無効であること' do
+      it 'deadline_idが1だと無効であること' do
         @item.deadline_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Deadline can't be blank")
+      end
+
+      it 'ユーザー情報がない場合は登録できないこと' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')      
       end
     end
   end  
