@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   
   def index
-    @items = Item.all
     @items = @items.order(created_at: :desc)
 
     respond_to do |format|
