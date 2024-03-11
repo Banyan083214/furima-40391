@@ -155,7 +155,7 @@
               </h3>
 
               <div class="item-price">
-                <span><%= item.price %>円<%= item.load.name %></span>
+                <span><%= item.price %>円<br><%= item.load.name %></span>
 
                 <div class="star-btn">
                   <%= image_tag "star.png", class: "star-icon" %>
@@ -170,7 +170,7 @@
   <% else %>
     <ul class="item-lists">
       <li class="list">
-        <%= link_to item_path(items.id) do %>
+        <%= link_to new_item_path do %>
           <div class="item-img-content">
             <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
           </div>
