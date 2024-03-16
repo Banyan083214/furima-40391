@@ -59,16 +59,12 @@ RSpec.describe OrderShippingAddress, type: :model do
         @order_shipping_address.telephone_number = '123456789a'
         expect(@order_shipping_address).not_to be_valid
       end
-  
-      it "ユーザーが関連付けられていない場合は無効であること" do
-        @order_shipping_address.user_id = nil
+
+      it "トークンが入力されていない場合は無効であること" do
+        @order_shipping_address.token = nil
         expect(@order_shipping_address).not_to be_valid
       end
-  
-      it "商品が関連付けられていない場合は無効であること" do
-        @order_shipping_address.item_id = nil
-        expect(@order_shipping_address).not_to be_valid
-      end
+
     end
   end
 end
