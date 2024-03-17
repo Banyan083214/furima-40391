@@ -1,7 +1,13 @@
 class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index]
 
   def index
+    if @item.order.present? || current_user == @item.user
+      redirect_to root_path
+      return
+    end
+      
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_shipping_address = OrderShippingAddress.new
   end
@@ -32,9 +38,9 @@ class OrdersController < ApplicationController
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: order_shipping_address_params[:token],    # カードトークン
-      currency: 'jpy'                 # 通貨の種類（日本円）
-  )
+      amount: @item.price,
+      card: order_shipping_address_params[:token],
+      currency: 'jpy'
+    )
   end
 end
