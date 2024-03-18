@@ -45,6 +45,7 @@ class ItemsController < ApplicationController
   end
     
   
+  
   private
 
   def set_item
@@ -52,6 +53,10 @@ class ItemsController < ApplicationController
   end
 
   def authorize_item_owner
+    if @item.order.present? 
+      redirect_to root_path
+    end
+
     unless current_user && @item.user == current_user
       redirect_to root_path
     end
