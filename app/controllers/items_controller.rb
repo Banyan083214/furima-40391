@@ -53,12 +53,10 @@ class ItemsController < ApplicationController
   end
 
   def authorize_item_owner
-    if @item.order.present? 
-      redirect_to root_path
-    end
-
-    unless current_user && @item.user == current_user
-      redirect_to root_path
+    if @item.order.present?  # 商品が売却済みかどうかをチェック
+      redirect_to root_path  # 売却済みの場合はトップページにリダイレクト
+    elsif current_user && @item.user != current_user  # ログインユーザーが商品の出品者ではない場合
+      redirect_to root_path  # トップページにリダイレクト
     end
   end
 
